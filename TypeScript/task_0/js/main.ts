@@ -6,44 +6,37 @@ interface Student {
 }
 
 const student1: Student = {
-    firstName: "Alice",
-    lastName: "Dupont",
-    age: 22,
+    firstName: "Lila",
+    lastName: "Doe",
+    age: 25,
     location: "Paris"
 };
-
 const student2: Student = {
-    firstName: "Bob",
-    lastName: "Martin",
-    age: 24,
+    firstName: "Doe",
+    lastName: "Lila",
+    age: 23,
     location: "Lyon"
 };
 
 const studentsList: Student[] = [student1, student2];
 
+let newTable: HTMLTableElement
+newTable = document.createElement("table")
 
-const table = document.createElement('table');
-const headerRow = document.createElement('tr');
-const thFirstName = document.createElement('th');
-thFirstName.textContent = 'First Name';
-const thLocation = document.createElement('th');
-thLocation.textContent = 'Location';
+let myTr: HTMLTableRowElement
+myTr = document.createElement("tr")
 
-headerRow.appendChild(thFirstName);
-headerRow.appendChild(thLocation);
+for ( const student of studentsList) {
+    myTr = document.createElement("tr")
+    let myTd: HTMLTableCellElement
+    myTd = document.createElement("td")
+    myTd.innerText = student.firstName
+    myTr.appendChild(myTd)
 
-table.appendChild(headerRow);
+    myTd = document.createElement("td")
+    myTd.innerText = student.location
+    myTr.appendChild(myTd)
 
-studentsList.forEach((student) => {
-    const row = document.createElement('tr');
-    const tdFirstName = document.createElement('td');
-    tdFirstName.textContent = student.firstName;
-    const tdLocation = document.createElement('td');
-    tdLocation.textContent = student.location;
-
-    row.appendChild(tdFirstName);
-    row.appendChild(tdLocation);
-    table.appendChild(row);
-});
-
-document.body.appendChild(table);
+    newTable.appendChild(myTr)
+}
+document.body.appendChild(newTable)
